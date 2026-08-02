@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import resume from "../assets/resume/resume.pdf";
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
 import {
   FaEnvelope,
   FaGithub,
@@ -8,6 +11,29 @@ import {
 } from "react-icons/fa";
 
 function Contact() {
+    const form = useRef();
+
+const sendEmail = (e) => {
+  e.preventDefault();
+
+  emailjs
+    .sendForm(
+      "service_4sfwcjj",
+      "template_zm373tx",
+      form.current,
+      "zCaD1C6xiNRohrQ_2"
+    )
+    .then(
+      () => {
+        alert("✅ Message sent successfully!");
+        form.current.reset();
+      },
+      (error) => {
+        console.error(error);
+        alert("❌ Failed to send message.");
+      }
+    );
+};
   return (
     <section
       id="contact"
@@ -19,7 +45,7 @@ function Contact() {
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl font-bold text-center mb-6"
+          className="text-5xl md:text-5xl font-bold text-center mb-6"
         >
           Contact <span className="text-blue-400">Me</span>
         </motion.h2>
@@ -74,31 +100,45 @@ function Contact() {
               </div>
             </div>
 
-            <button className="mt-8 bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl flex items-center gap-3 transition duration-300">
-              <FaDownload />
-              Download Resume
-            </button>
+            <a
+                href={resume}
+                download="Mallidi_SSCVV_Ramakrishna_Reddy_Resume.pdf"
+                className="mt-8 inline-flex items-center gap-3 bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl transition duration-300"
+                >
+                <FaDownload />
+                Download Resume
+            </a>
 
           </div>
 
           {/* Right Side */}
-          <form className="space-y-6">
+          <form
+  ref={form}
+  onSubmit={sendEmail}
+  className="space-y-6"
+>
 
             <input
-              type="text"
-              placeholder="Your Name"
+  type="text"
+  name="from_name"
+  placeholder="Your Name"
+  required
               className="w-full bg-slate-800 p-4 rounded-xl outline-none border border-slate-700 focus:border-blue-500"
             />
 
             <input
-              type="email"
-              placeholder="Your Email"
+  type="email"
+  name="from_email"
+  placeholder="Your Email"
+  required
               className="w-full bg-slate-800 p-4 rounded-xl outline-none border border-slate-700 focus:border-blue-500"
             />
 
-            <textarea
-              rows="6"
-              placeholder="Your Message"
+           <textarea
+  name="message"
+  rows="6"
+  placeholder="Your Message"
+  required
               className="w-full bg-slate-800 p-4 rounded-xl outline-none border border-slate-700 focus:border-blue-500"
             />
 

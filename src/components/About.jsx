@@ -13,7 +13,7 @@ function About() {
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl font-bold text-center mb-6"
+          className="text-5xl md:text-5xl font-bold text-center mb-6"
         >
           About <span className="text-blue-400">Me</span>
         </motion.h2>
@@ -24,7 +24,7 @@ function About() {
           transition={{ delay: 0.2 }}
           className="text-gray-400 text-center max-w-3xl mx-auto text-lg leading-8"
         >
-          I am a passionate AI & Data Science undergraduate with a strong
+          I am a passionate Artificial Intelligence & Data Science undergraduate with a strong
           interest in Artificial Intelligence, Machine Learning, Web
           Development, and solving real-world problems through technology.
           I enjoy learning new technologies and building innovative software

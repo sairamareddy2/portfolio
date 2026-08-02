@@ -14,8 +14,8 @@ function Footer() {
         >
 
           <div>
-            <h2 className="text-3xl font-bold text-blue-400">
-              Reddy
+            <h2 className="text-3xl md:text-5xl font-bold text-blue-400">
+              Mallidi Sscvv Ramakrishna Reddy
             </h2>
 
             <p className="text-gray-400 mt-2">
@@ -56,13 +56,21 @@ function Footer() {
 
         <div className="border-t border-slate-700 mt-8 pt-6 text-center text-gray-400">
 
-          <p className="flex justify-center items-center gap-2">
-            Made with <FaHeart className="text-red-500" /> using React & Tailwind CSS
-          </p>
+            <p className="text-lg font-medium text-white">
+                Designed & Developed by
+            </p>
 
-          <p className="mt-2">
-            © {new Date().getFullYear()} Reddy. All Rights Reserved.
-          </p>
+            <p className="text-blue-400 font-semibold mt-1">
+                Mallidi SSCVV Ramakrishna Reddy
+            </p>
+
+            <p className="mt-3 text-sm">
+                Built with React.js, Vite, Tailwind CSS & Framer Motion
+            </p>
+
+            <p className="mt-3 text-sm">
+                © {new Date().getFullYear()} Mallidi SSCVV Ramakrishna Reddy. All Rights Reserved.
+            </p>
 
         </div>
 

@@ -14,7 +14,7 @@ function Projects() {
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl font-bold text-center mb-6"
+          className="text-5xl md:text-5xl font-bold text-center mb-6"
         >
           Featured <span className="text-blue-400">Projects</span>
         </motion.h2>
@@ -92,10 +92,15 @@ function Projects() {
                  </a>
 
                   {project.paper && (
-                    <button className="border border-blue-500 hover:bg-blue-500 px-4 py-2 rounded-lg flex items-center gap-2">
-                      <FaFileAlt />
-                      Paper
-                    </button>
+                    <a
+                        href={project.paper}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border border-blue-500 hover:bg-blue-500 px-4 py-2 rounded-lg flex items-center gap-2"
+                        >
+                        <FaFileAlt />
+                        View Paper
+                    </a>
                   )}
 
                 </div>

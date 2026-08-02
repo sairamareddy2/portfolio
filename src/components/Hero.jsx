@@ -3,6 +3,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import profile from "../assets/images/profile.png";
 import resume from "../assets/resume/resume.pdf";
+import { Link } from "react-scroll";
 
 function Hero() {
   return (
@@ -27,7 +28,7 @@ function Hero() {
           </h1>
 
           <h2 className="text-2xl md:text-3xl mt-5 text-gray-300">
-            AI & Data Science Undergraduate
+            Artificial Intelligence & Data Science Undergraduate
           </h2>
 
           <div className="text-2xl font-semibold text-blue-400 mt-6 h-12">
@@ -46,6 +47,9 @@ function Hero() {
               delaySpeed={1500}
             />
           </div>
+          <div className="inline-block mt-6 px-4 py-2 bg-green-500/20 text-green-400 rounded-full border border-green-500">
+            🟢 Open to Internship Opportunities
+         </div>
 
           <p className="text-gray-400 mt-8 leading-8 max-w-xl text-lg">
             Passionate about building intelligent software solutions using
@@ -57,9 +61,15 @@ function Hero() {
           {/* Buttons */}
           <div className="flex flex-wrap gap-5 mt-10">
 
-            <button className="bg-blue-500 hover:bg-blue-600 hover:scale-105 transition duration-300 px-8 py-3 rounded-xl font-semibold shadow-lg">
-              View Projects
-            </button>
+            <Link
+                to="projects"
+                smooth={true}
+                duration={500}
+                offset={-80}
+                className="bg-blue-500 hover:bg-blue-600 px-8 py-3 rounded-xl font-semibold transition cursor-pointer inline-block"
+                >
+                View Projects
+            </Link>
 
             <a
                 href={resume}
@@ -110,7 +120,7 @@ function Hero() {
         >
           <img
             src={profile}
-            alt="Reddy"
+            alt="Sscvv Ramakrishna Reddy"
             className="w-72 md:w-80 lg:w-96 rounded-3xl object-cover border-4 border-blue-500 shadow-[0_0_35px_rgba(59,130,246,0.5)] hover:scale-105 transition duration-500"
           />
         </motion.div>

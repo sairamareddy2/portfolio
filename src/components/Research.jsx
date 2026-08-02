@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaBookOpen, FaFilePdf } from "react-icons/fa";
+import manuscript from "../assets/research/manuscript.pdf";
 
 function Research() {
   return (
@@ -13,7 +14,7 @@ function Research() {
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl font-bold text-center mb-6"
+          className="text-5xl md:text-5xl font-bold text-center mb-6"
         >
           Research <span className="text-blue-400">& Innovation</span>
         </motion.h2>
@@ -63,15 +64,24 @@ function Research() {
           </div>
 
           <div className="flex gap-4 mt-10">
-            <button className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl flex items-center gap-2">
-              <FaBookOpen />
-              View Research
-            </button>
+            <a
+                href={manuscript}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl flex items-center gap-2"
+                >
+                <FaBookOpen />
+                View Research
+                </a>
 
-            <button className="border border-blue-500 hover:bg-blue-500 px-6 py-3 rounded-xl flex items-center gap-2">
-              <FaFilePdf />
-              Download Manuscript
-            </button>
+                <a
+                href={manuscript}
+                download
+                className="border border-blue-500 hover:bg-blue-500 px-6 py-3 rounded-xl flex items-center gap-2"
+                >
+                <FaFilePdf />
+                Download Manuscript
+            </a>
           </div>
         </motion.div>
 

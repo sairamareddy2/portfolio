@@ -1,4 +1,5 @@
 import attendance from "../assets/images/attendance.png";
+import manuscript from "../assets/research/manuscript.pdf";
 
 const projects = [
   {
@@ -21,7 +22,7 @@ const projects = [
     ],
 
     github: "https://github.com/sairamareddy2/Smart-Attendance-Guard",
-    paper: "#",
+    paper: manuscript,
   },
 
   {
