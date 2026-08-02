@@ -13,7 +13,7 @@ const stats = [
     icon: <FaLaptopCode />,
   },
   {
-    number: "4",
+    number: "3",
     title: "Certificates",
     icon: <FaCertificate />,
   },
