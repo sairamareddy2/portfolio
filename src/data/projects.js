@@ -1,6 +1,4 @@
 import attendance from "../assets/images/attendance.png";
-import clinic from "../assets/images/clinic.png";
-import subtitle from "../assets/images/subtitle.png";
 
 const projects = [
   {
@@ -10,7 +8,7 @@ const projects = [
     image: attendance,
 
     description:
-      "Developed a secure attendance management system using Dynamic QR Codes and Geofencing to eliminate proxy attendance. Implemented role-based authentication, real-time attendance monitoring, QR verification, and analytics dashboards.",
+      "Developed a secure attendance management system using Dynamic QR Codes and Geofencing to eliminate proxy attendance. Implemented role-based authentication, real-time attendance monitoring, automatic QR verification, and attendance analytics.",
 
     technologies: [
       "React.js",
@@ -22,10 +20,7 @@ const projects = [
       "Geolocation API",
     ],
 
-    github: "#",
-
-    demo: "#",
-
+    github: "https://github.com/sairamareddy2/Smart-Attendance-Guard",
     paper: "#",
   },
 
@@ -34,10 +29,10 @@ const projects = [
 
     title: "Clinic Management System",
 
-    image: clinic,
+    image: null,
 
     description:
-      "Built a clinic management application with Python and MySQL for managing patients, doctors, appointments, billing, and medical records using stored procedures and triggers.",
+      "Developed a clinic management application with Python and MySQL to manage patients, doctors, appointments, billing, and medical records using stored procedures and triggers.",
 
     technologies: [
       "Python",
@@ -47,9 +42,7 @@ const projects = [
       "Triggers",
     ],
 
-    github: "#",
-
-    demo: "#",
+    github: "https://github.com/sairamareddy2/Clinic-Management-System",
   },
 
   {
@@ -57,10 +50,10 @@ const projects = [
 
     title: "AI Subtitle Generator",
 
-    image: subtitle,
+    image: null,
 
     description:
-      "Developed an AI-powered subtitle generator using OpenAI Whisper with multilingual subtitle translation and subtitle embedding using FFmpeg and MoviePy.",
+      "Created an AI-powered subtitle generator using OpenAI Whisper with multilingual subtitle translation and subtitle embedding using FFmpeg and MoviePy through Streamlit.",
 
     technologies: [
       "Python",
@@ -71,9 +64,7 @@ const projects = [
       "Google Translate API",
     ],
 
-    github: "#",
-
-    demo: "#",
+    github: "https://github.com/sairamareddy2/AI_SUBTITLE_GENERATOR",
   },
 ];
 

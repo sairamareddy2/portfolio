@@ -2,6 +2,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import profile from "../assets/images/profile.png";
+import resume from "../assets/resume/resume.pdf";
 
 function Hero() {
   return (
@@ -60,9 +61,12 @@ function Hero() {
               View Projects
             </button>
 
-            <button className="border-2 border-blue-400 text-blue-400 hover:bg-blue-500 hover:text-white hover:scale-105 transition duration-300 px-8 py-3 rounded-xl font-semibold">
-              Download Resume
-            </button>
+            <a
+                href={resume}
+                download
+                className="border-2 border-blue-400 text-blue-400 hover:bg-blue-500 hover:text-white hover:scale-105 transition duration-300 px-8 py-3 rounded-xl font-semibold">
+                Download Resume
+            </a>
 
           </div>
 
