@@ -33,7 +33,7 @@ const certificates = [
   year: "2026",
   category: "Forage",
   link: datacom,
-},
+ },
 ];
 
 export default certificates;
