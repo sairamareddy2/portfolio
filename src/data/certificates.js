@@ -19,13 +19,21 @@ const certificates = [
     link: deloitte,
   },
   {
-    id: 4,
+    id: 3,
     title: "NPTEL - Introduction to IoT (Elite Silver)",
     issuer: "NPTEL",
     year: "2025",
     category: "NPTEL",
     link: iot,
   },
+  {
+  id: 4,
+  title: "Partnering with AI in the Workplace Job Simulation",
+  issuer: "Forage",
+  year: "2026",
+  category: "Forage",
+  link: datacom,
+},
 ];
 
 export default certificates;
