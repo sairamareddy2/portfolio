@@ -1,6 +1,8 @@
 import agentic from "../assets/certificates/agentic-ai.pdf";
 import deloitte from "../assets/certificates/deloitte.pdf";
 import iot from "../assets/certificates/iot.pdf";
+import datacom from "../assets/certificates/datacom.pdf";
+
 const certificates = [
   {
     id: 1,
@@ -27,13 +29,13 @@ const certificates = [
     link: iot,
   },
   {
-  id: 4,
-  title: "Partnering with AI in the Workplace Job Simulation",
-  issuer: "Forage",
-  year: "2026",
-  category: "Forage",
-  link: datacom,
- },
+    id: 4,
+    title: "Partnering with AI in the Workplace Job Simulation",
+    issuer: "Forage",
+    year: "2026",
+    category: "Forage",
+    link: datacom,
+  },
 ];
 
 export default certificates;
