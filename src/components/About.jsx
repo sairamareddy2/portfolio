@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import { FaGraduationCap, FaLaptopCode, FaBrain, FaDatabase } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaLaptopCode,
+  FaBrain,
+  FaDatabase
+} from "react-icons/fa";
 
 function About() {
   return (
@@ -17,19 +22,6 @@ function About() {
         >
           About <span className="text-blue-400">Me</span>
         </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-gray-400 text-center max-w-3xl mx-auto text-lg leading-8"
-        >
-          I am a passionate Artificial Intelligence & Data Science undergraduate with a strong
-          interest in Artificial Intelligence, Machine Learning, Web
-          Development, and solving real-world problems through technology.
-          I enjoy learning new technologies and building innovative software
-          solutions.
-        </motion.p>
 
         <div className="grid md:grid-cols-2 gap-8 mt-16">
 
@@ -84,7 +76,6 @@ function About() {
               </div>
 
             </div>
-
           </motion.div>
 
         </div>

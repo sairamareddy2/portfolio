@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import {  FaGithub } from "react-icons/fa";
 import {
   FaJava,
   FaPython,
@@ -17,7 +18,6 @@ const skillCategories = [
     skills: [
       { name: "Java", icon: <FaJava className="text-red-500" /> },
       { name: "Python", icon: <FaPython className="text-yellow-400" /> },
-      { name: "C", icon: "💻" },
       { name: "R", icon: "📈" },
     ],
   },
@@ -45,7 +45,6 @@ const skillCategories = [
     skills: [
       { name: "Power BI", icon: "📊" },
       { name: "Tableau", icon: "📉" },
-      { name: "Microsoft Excel", icon: "📗" },
     ],
   },
 
@@ -53,8 +52,7 @@ const skillCategories = [
     title: "Development Tools",
     skills: [
       { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
-      { name: "Google Colab", icon: "📒" },
-      { name: "StarUML", icon: "📐" },
+      { name: "GitHub", icon: <FaGithub className="text-white" /> },
     ],
   },
 ];

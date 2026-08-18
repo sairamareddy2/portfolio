@@ -19,10 +19,6 @@ function Hero() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-blue-400 text-lg font-medium mb-4">
-            👋 Welcome to my Portfolio
-          </p>
-
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
             Hi, I'm <span className="text-blue-400">RamaKrishna Reddy</span>
           </h1>
