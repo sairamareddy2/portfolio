@@ -75,36 +75,6 @@ function Hero() {
             </a>
 
           </div>
-
-          {/* Social Icons */}
-          <div className="flex gap-6 mt-10 text-3xl text-gray-300">
-
-            <a
-              href="https://github.com/sairamareddy2"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-blue-400 hover:scale-125 transition duration-300"
-            >
-              <FaGithub />
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/sairamareddy-mallidi-b25b96325/"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-blue-400 hover:scale-125 transition duration-300"
-            >
-              <FaLinkedin />
-            </a>
-
-            <a
-              href="mailto:mallidisairamareddy40@gmail.com"
-              className="hover:text-blue-400 hover:scale-125 transition duration-300"
-            >
-              <FaEnvelope />
-            </a>
-
-          </div>
         </motion.div>
 
         {/* Right Side */}
