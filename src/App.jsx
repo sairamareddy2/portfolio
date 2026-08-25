@@ -9,35 +9,26 @@ import Stats from "./components/Stats";
 import BackToTop from "./components/BackToTop";
 import CursorGlow from "./components/CursorGlow";
 import InteractiveRobot from "./components/InteractiveRobot";
+import FloatingAssistant from "./components/FloatingAssistant";
 
 function App() {
   return (
-    <div className="bg-slate-950 min-h-screen text-white">
-
-      {/* Custom glowing cursor */}
+    <>
       <CursorGlow />
 
-      {/* Interactive 3D AI Dashboard */}
-      <InteractiveRobot />
-
-      {/* Navigation */}
       <Navbar />
 
-      {/* Portfolio Sections */}
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Stats />
-        <Projects />
-        <Certificates />
-        <Contact />
-      </main>
+      <InteractiveRobot />
 
-      {/* Back to Top */}
-      <BackToTop />
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Certificates />
+      <Contact />
 
-    </div>
+      <FloatingAssistant />
+    </>
   );
 }
 
