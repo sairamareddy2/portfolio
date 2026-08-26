@@ -2,680 +2,428 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 /* =====================================================
    MINI 3D ROBOT
 ===================================================== */
 
 function MiniRobot() {
+
   const robot = useRef();
 
   useFrame((state) => {
+
     if (!robot.current) return;
 
-    const time = state.clock.elapsedTime;
+    const time =
+      state.clock.elapsedTime;
+
+    /* Floating */
+
+    robot.current.position.y =
+      Math.sin(time * 2) * 0.05;
+
+    /* Gentle rotation */
 
     robot.current.rotation.y =
       Math.sin(time * 0.8) * 0.25;
 
-    robot.current.position.y =
-      Math.sin(time * 2) * 0.05;
   });
 
-  return (
-    <group ref={robot} scale={0.75}>
 
-      {/* HEAD */}
-      <mesh position={[0, 0.85, 0]}>
-        <boxGeometry args={[0.75, 0.62, 0.55]} />
+  return (
+
+    <group
+      ref={robot}
+      scale={0.75}
+    >
+
+      {/* =================================================
+          HEAD
+      ================================================= */}
+
+      <mesh
+        position={[0, 0.85, 0]}
+      >
+
+        <boxGeometry
+          args={[
+            0.75,
+            0.62,
+            0.55,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#172554"
           metalness={0.85}
           roughness={0.2}
         />
+
       </mesh>
 
-      {/* FACE */}
-      <mesh position={[0, 0.85, 0.29]}>
-        <boxGeometry args={[0.58, 0.42, 0.03]} />
+
+      {/* =================================================
+          FACE
+      ================================================= */}
+
+      <mesh
+        position={[
+          0,
+          0.85,
+          0.29,
+        ]}
+      >
+
+        <boxGeometry
+          args={[
+            0.58,
+            0.42,
+            0.03,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#020617"
           emissive="#0369a1"
           emissiveIntensity={0.8}
         />
+
       </mesh>
 
-      {/* EYES */}
-      <mesh position={[-0.15, 0.9, 0.33]}>
-        <sphereGeometry args={[0.075, 20, 20]} />
+
+      {/* =================================================
+          LEFT EYE
+      ================================================= */}
+
+      <mesh
+        position={[
+          -0.15,
+          0.9,
+          0.33,
+        ]}
+      >
+
+        <sphereGeometry
+          args={[
+            0.075,
+            20,
+            20,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#cffafe"
           emissive="#22d3ee"
           emissiveIntensity={7}
         />
+
       </mesh>
 
-      <mesh position={[0.15, 0.9, 0.33]}>
-        <sphereGeometry args={[0.075, 20, 20]} />
+
+      {/* =================================================
+          RIGHT EYE
+      ================================================= */}
+
+      <mesh
+        position={[
+          0.15,
+          0.9,
+          0.33,
+        ]}
+      >
+
+        <sphereGeometry
+          args={[
+            0.075,
+            20,
+            20,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#cffafe"
           emissive="#22d3ee"
           emissiveIntensity={7}
         />
+
       </mesh>
 
-      {/* MOUTH */}
-      <mesh position={[0, 0.73, 0.33]}>
-        <boxGeometry args={[0.25, 0.025, 0.02]} />
+
+      {/* =================================================
+          MOUTH
+      ================================================= */}
+
+      <mesh
+        position={[
+          0,
+          0.73,
+          0.33,
+        ]}
+      >
+
+        <boxGeometry
+          args={[
+            0.25,
+            0.025,
+            0.02,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#67e8f9"
           emissive="#22d3ee"
           emissiveIntensity={5}
         />
+
       </mesh>
 
-      {/* ANTENNA */}
-      <mesh position={[0, 1.25, 0]}>
-        <cylinderGeometry args={[0.018, 0.018, 0.18, 12]} />
-        <meshStandardMaterial color="#64748b" />
+
+      {/* =================================================
+          ANTENNA
+      ================================================= */}
+
+      <mesh
+        position={[
+          0,
+          1.25,
+          0,
+        ]}
+      >
+
+        <cylinderGeometry
+          args={[
+            0.018,
+            0.018,
+            0.18,
+            12,
+          ]}
+        />
+
+        <meshStandardMaterial
+          color="#64748b"
+        />
+
       </mesh>
 
-      <mesh position={[0, 1.36, 0]}>
-        <sphereGeometry args={[0.045, 16, 16]} />
+
+      <mesh
+        position={[
+          0,
+          1.36,
+          0,
+        ]}
+      >
+
+        <sphereGeometry
+          args={[
+            0.045,
+            16,
+            16,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#67e8f9"
           emissive="#22d3ee"
           emissiveIntensity={8}
         />
+
       </mesh>
 
-      {/* BODY */}
-      <mesh position={[0, 0.05, 0]}>
-        <boxGeometry args={[0.9, 0.85, 0.58]} />
+
+      {/* =================================================
+          BODY
+      ================================================= */}
+
+      <mesh
+        position={[
+          0,
+          0.05,
+          0,
+        ]}
+      >
+
+        <boxGeometry
+          args={[
+            0.9,
+            0.85,
+            0.58,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#0f172a"
           metalness={0.9}
           roughness={0.18}
         />
+
       </mesh>
 
-      {/* CHEST */}
-      <mesh position={[0, 0.08, 0.31]}>
-        <sphereGeometry args={[0.11, 20, 20]} />
-        <meshStandardMaterial
-          color="#a5f3fc"
-          emissive="#06b6d4"
-          emissiveIntensity={8}
-        />
-      </mesh>
 
-      {/* ARMS */}
+      {/* =================================================
+          CHEST
+      ================================================= */}
+
       <mesh
-        position={[-0.63, 0.02, 0]}
-        rotation={[0, 0, -0.12]}
+        position={[
+          0,
+          0.08,
+          0.31,
+        ]}
       >
-        <capsuleGeometry args={[0.09, 0.45, 6, 12]} />
+
+        <boxGeometry
+          args={[
+            0.45,
+            0.32,
+            0.025,
+          ]}
+        />
+
+        <meshStandardMaterial
+          color="#082f49"
+          emissive="#0891b2"
+          emissiveIntensity={1.5}
+        />
+
+      </mesh>
+
+
+      {/* =================================================
+          LEFT ARM
+      ================================================= */}
+
+      <mesh
+        position={[
+          -0.63,
+          0.02,
+          0,
+        ]}
+        rotation={[
+          0,
+          0,
+          -0.12,
+        ]}
+      >
+
+        <capsuleGeometry
+          args={[
+            0.09,
+            0.45,
+            6,
+            12,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#1e293b"
           metalness={0.9}
         />
+
       </mesh>
 
+
+      {/* =================================================
+          RIGHT ARM
+      ================================================= */}
+
       <mesh
-        position={[0.63, 0.02, 0]}
-        rotation={[0, 0, 0.12]}
+        position={[
+          0.63,
+          0.02,
+          0,
+        ]}
+        rotation={[
+          0,
+          0,
+          0.12,
+        ]}
       >
-        <capsuleGeometry args={[0.09, 0.45, 6, 12]} />
+
+        <capsuleGeometry
+          args={[
+            0.09,
+            0.45,
+            6,
+            12,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#1e293b"
           metalness={0.9}
         />
+
       </mesh>
 
-      {/* LEGS */}
-      <mesh position={[-0.2, -0.7, 0]}>
-        <capsuleGeometry args={[0.11, 0.55, 6, 12]} />
+
+      {/* =================================================
+          LEFT LEG
+      ================================================= */}
+
+      <mesh
+        position={[
+          -0.2,
+          -0.7,
+          0,
+        ]}
+      >
+
+        <capsuleGeometry
+          args={[
+            0.11,
+            0.55,
+            6,
+            12,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#0f172a"
           metalness={0.9}
         />
+
       </mesh>
 
-      <mesh position={[0.2, -0.7, 0]}>
-        <capsuleGeometry args={[0.11, 0.55, 6, 12]} />
+
+      {/* =================================================
+          RIGHT LEG
+      ================================================= */}
+
+      <mesh
+        position={[
+          0.2,
+          -0.7,
+          0,
+        ]}
+      >
+
+        <capsuleGeometry
+          args={[
+            0.11,
+            0.55,
+            6,
+            12,
+          ]}
+        />
+
         <meshStandardMaterial
           color="#0f172a"
           metalness={0.9}
         />
+
       </mesh>
 
     </group>
+
   );
-}
-
-
-/* =====================================================
-   REAL PORTFOLIO DATA
-   Based on the uploaded resume
-===================================================== */
-
-const portfolioData = {
-
-  name: "Mallidi Sscvv Ramakrishna Reddy",
-
-  shortName: "Reddy",
-
-  role: "Artificial Intelligence and Data Science Undergraduate",
-
-  college:
-    "VNR Vignana Jyothi Institute of Engineering and Technology",
-
-  degree:
-    "B.Tech – Artificial Intelligence and Data Science",
-
-  educationPeriod: "2024–2028",
-
-  cgpa: "9.2",
-
-  objective:
-    "AI and Data Science undergraduate majoring in Python, Data Structures, and Machine Learning, interested in creating AI-based solutions and utilizing AI knowledge and software/data analysis skills.",
-
-  programming: [
-    "Java",
-    "Python",
-    "C",
-    "R",
-  ],
-
-  web: [
-    "HTML",
-    "CSS",
-    "Streamlit",
-    "Node.js",
-  ],
-
-  databases: [
-    "MySQL",
-    "MongoDB",
-  ],
-
-  tools: [
-    "Git",
-    "Power BI",
-    "Excel",
-    "Tableau",
-    "StarUML",
-    "Google Colab",
-  ],
-
-  projects: [
-
-    {
-      name: "AI Subtitle Generator",
-
-      technologies: [
-        "Python",
-        "Streamlit",
-        "OpenAI Whisper",
-        "FFmpeg",
-        "MoviePy",
-        "Google Translate API",
-      ],
-
-      description:
-        "An AI-based web application that creates subtitles from video audio and translates those subtitles to five languages.",
-
-      details:
-        "The project uses OpenAI Whisper for speech-to-text transcription and FFmpeg and MoviePy for subtitle embedding. It also provides an interactive Streamlit interface for uploading videos, generating subtitles, selecting languages and downloading captioned videos or subtitles.",
-    },
-
-    {
-      name: "Clinic Management System",
-
-      technologies: [
-        "MySQL",
-        "SQL",
-        "Stored Procedures",
-        "Triggers",
-        "Python",
-      ],
-
-      description:
-        "A Python-based clinic management system for managing patients, doctors, appointments, medical history and billing.",
-
-      details:
-        "The system uses a normalized MySQL database with relationship tables and foreign keys. Stored procedures and triggers provide data consistency and automate processes. SQL reporting mechanisms generate patient history, appointment schedules, doctor statistics and billing reports.",
-    },
-
-    {
-      name: "Smart Attendance Guard",
-
-      technologies: [
-        "React.js",
-        "Node.js",
-        "Express.js",
-        "SQLite",
-        "JWT",
-        "QR Code",
-        "Geolocation API",
-      ],
-
-      description:
-        "An attendance management application using dynamic QR code scanning and geofencing to prevent proxy attendance.",
-
-      details:
-        "The system includes role-based authentication for students, faculty and administration, real-time attendance monitoring and automatic QR verification. Attendance analysis dashboards were designed to improve accuracy and productivity.",
-    },
-
-  ],
-
-  certificates: [
-    "Industry based Training program on Agentic AI and LLMs",
-    "Deloitte Data Analytics Job Simulation",
-    "Completed Training in Full Stack Web Development",
-    "NPTEL Introduction to IoT (Elite Silver)",
-  ],
-
-  positions: [
-    "Volunteer of Computer Society of India (CSI) Student Chapter at VNRVJIET",
-    "Volunteer of National Service Scheme (NSS)",
-    "Volunteer of Data Quester Club at VNRVJIET",
-  ],
-
-  links: {
-    linkedin: "https://linkedin.com/in/sairamareddy",
-    github: "https://github.com/sairamareddy2",
-  },
-
-};
-
-
-/* =====================================================
-   AI RESPONSE ENGINE
-===================================================== */
-
-function getAIResponse(question) {
-
-  const q = question
-    .toLowerCase()
-    .trim();
-
-
-  /* GREETING */
-
-  if (
-    q.includes("hello") ||
-    q.includes("hi") ||
-    q.includes("hey")
-  ) {
-    return {
-      text:
-        `Hello! 👋 I'm ${portfolioData.name}'s AI portfolio assistant. Ask me about his education, skills, projects, research, certificates or experience.`,
-      action: null,
-    };
-  }
-
-
-  /* NAME */
-
-  if (
-    q.includes("name") ||
-    q.includes("who is reddy") ||
-    q.includes("who are you")
-  ) {
-    return {
-      text:
-        `His name is ${portfolioData.name}. He is an ${portfolioData.role}.`,
-      action: "home",
-    };
-  }
-
-
-  /* ABOUT */
-
-  if (
-    q.includes("about him") ||
-    q.includes("about reddy") ||
-    q.includes("tell me about him") ||
-    q.includes("profile")
-  ) {
-    return {
-      text:
-        `${portfolioData.name} is an ${portfolioData.role} at ${portfolioData.college}. He is pursuing ${portfolioData.degree} from ${portfolioData.educationPeriod} with a current CGPA of ${portfolioData.cgpa}.`,
-      action: "about",
-    };
-  }
-
-
-  /* EDUCATION */
-
-  if (
-    q.includes("education") ||
-    q.includes("college") ||
-    q.includes("university") ||
-    q.includes("study") ||
-    q.includes("cgpa") ||
-    q.includes("degree")
-  ) {
-
-    return {
-      text:
-        `Reddy is pursuing ${portfolioData.degree} at ${portfolioData.college} from ${portfolioData.educationPeriod}. His current CGPA is ${portfolioData.cgpa}.`,
-      action: "about",
-    };
-
-  }
-
-
-  /* PROGRAMMING */
-
-  if (
-    q.includes("programming") ||
-    q.includes("programming language") ||
-    q.includes("coding language")
-  ) {
-
-    return {
-      text:
-        `Reddy's programming languages are ${portfolioData.programming.join(", ")}.`,
-      action: "skills",
-    };
-
-  }
-
-
-  /* SKILLS */
-
-  if (
-    q.includes("skill") ||
-    q.includes("technical") ||
-    q.includes("technology") ||
-    q.includes("technologies")
-  ) {
-
-    return {
-      text:
-        `Reddy's technical skills include Programming: ${portfolioData.programming.join(", ")}. Web technologies: ${portfolioData.web.join(", ")}. Databases: ${portfolioData.databases.join(", ")}. Tools: ${portfolioData.tools.join(", ")}.`,
-      action: "skills",
-    };
-
-  }
-
-
-  /* DATABASE */
-
-  if (
-    q.includes("database") ||
-    q.includes("mysql") ||
-    q.includes("mongodb")
-  ) {
-
-    return {
-      text:
-        `Reddy has experience with ${portfolioData.databases.join(" and ")}.`,
-      action: "skills",
-    };
-
-  }
-
-
-  /* PROJECTS */
-
-  if (
-    q.includes("projects") ||
-    q.includes("project") ||
-    q.includes("built") ||
-    q.includes("work")
-  ) {
-
-    const projectNames =
-      portfolioData.projects
-        .map((project) => project.name)
-        .join(", ");
-
-    return {
-      text:
-        `Reddy has worked on three major projects: ${projectNames}.`,
-      action: "projects",
-    };
-
-  }
-
-
-  /* AI SUBTITLE */
-
-  if (
-    q.includes("subtitle") ||
-    q.includes("whisper") ||
-    q.includes("caption")
-  ) {
-
-    const project =
-      portfolioData.projects[0];
-
-    return {
-      text:
-        `${project.name}: ${project.description} ${project.details} Technologies include ${project.technologies.join(", ")}.`,
-      action: "projects",
-    };
-
-  }
-
-
-  /* CLINIC */
-
-  if (
-    q.includes("clinic") ||
-    q.includes("hospital") ||
-    q.includes("medical")
-  ) {
-
-    const project =
-      portfolioData.projects[1];
-
-    return {
-      text:
-        `${project.name}: ${project.description} ${project.details} Technologies include ${project.technologies.join(", ")}.`,
-      action: "projects",
-    };
-
-  }
-
-
-  /* ATTENDANCE */
-
-  if (
-    q.includes("attendance") ||
-    q.includes("qr") ||
-    q.includes("geolocation") ||
-    q.includes("geofencing") ||
-    q.includes("proxy attendance")
-  ) {
-
-    const project =
-      portfolioData.projects[2];
-
-    return {
-      text:
-        `${project.name}: ${project.description} ${project.details} Technologies include ${project.technologies.join(", ")}.`,
-      action: "projects",
-    };
-
-  }
-
-
-  /* PROJECT TECHNOLOGIES */
-
-  if (
-    q.includes("project technology") ||
-    q.includes("project tech") ||
-    q.includes("tech stack")
-  ) {
-
-    return {
-      text:
-        portfolioData.projects
-          .map(
-            (project) =>
-              `${project.name}: ${project.technologies.join(", ")}`
-          )
-          .join(" | "),
-      action: "projects",
-    };
-
-  }
-
-
-  /* CERTIFICATES */
-
-  if (
-    q.includes("certificate") ||
-    q.includes("certification") ||
-    q.includes("certificates")
-  ) {
-
-    return {
-      text:
-        `Reddy's certificates include: ${portfolioData.certificates.join("; ")}.`,
-      action: "certificates",
-    };
-
-  }
-
-
-  /* AGENTIC AI */
-
-  if (
-    q.includes("agentic") ||
-    q.includes("llm") ||
-    q.includes("large language")
-  ) {
-
-    return {
-      text:
-        "Reddy completed an industry-based training program on Agentic AI and LLMs.",
-      action: "certificates",
-    };
-
-  }
-
-
-  /* RESPONSIBILITY */
-
-  if (
-    q.includes("volunteer") ||
-    q.includes("responsibility") ||
-    q.includes("club") ||
-    q.includes("csi") ||
-    q.includes("nss")
-  ) {
-
-    return {
-      text:
-        `Reddy has been involved as a volunteer with the ${portfolioData.positions.join("; ")}.`,
-      action: "about",
-    };
-
-  }
-
-
-  /* RESEARCH */
-
-  if (
-    q.includes("research") ||
-    q.includes("paper") ||
-    q.includes("publication")
-  ) {
-
-    return {
-      text:
-        "The uploaded resume does not list specific research papers or publications. The portfolio can be updated with those details when they are available.",
-      action: "projects",
-    };
-
-  }
-
-
-  /* GITHUB */
-
-  if (
-    q.includes("github") ||
-    q.includes("source code")
-  ) {
-
-    return {
-      text:
-        `Reddy's GitHub profile is available at ${portfolioData.links.github}.`,
-      action: null,
-      external: portfolioData.links.github,
-    };
-
-  }
-
-
-  /* LINKEDIN */
-
-  if (
-    q.includes("linkedin") ||
-    q.includes("professional profile")
-  ) {
-
-    return {
-      text:
-        `Reddy's LinkedIn profile is available at ${portfolioData.links.linkedin}.`,
-      action: null,
-      external: portfolioData.links.linkedin,
-    };
-
-  }
-
-
-  /* CONTACT */
-
-  if (
-    q.includes("contact") ||
-    q.includes("email") ||
-    q.includes("hire") ||
-    q.includes("reach")
-  ) {
-
-    return {
-      text:
-        "You can use the Contact section of the portfolio to get in touch with Reddy.",
-      action: "contact",
-    };
-
-  }
-
-
-  /* HOME */
-
-  if (
-    q.includes("portfolio") ||
-    q.includes("home")
-  ) {
-
-    return {
-      text:
-        `Welcome to ${portfolioData.name}'s portfolio. You can explore his education, technical skills, projects, certificates and experience.`,
-      action: "home",
-    };
-
-  }
-
-
-  /* DEFAULT */
-
-  return {
-    text:
-      "I can answer questions about Reddy's education, skills, projects, technologies, certificates, volunteering, GitHub and LinkedIn. Try asking something like: “What projects has Reddy built?”",
-    action: null,
-  };
 
 }
 
 
 /* =====================================================
-   FLOATING ASSISTANT
+   FLOATING AI ASSISTANT
 ===================================================== */
 
 function FloatingAssistant() {
@@ -683,49 +431,86 @@ function FloatingAssistant() {
   const [open, setOpen] =
     useState(false);
 
+  const [input, setInput] =
+    useState("");
+
+  const [loading, setLoading] =
+    useState(false);
+
   const [messages, setMessages] =
     useState([
       {
         sender: "ai",
+
         text:
-          `Hi! 👋 I'm ${portfolioData.shortName}'s AI assistant. Ask me anything about his portfolio.`,
+          "Hi! 👋 I'm Reddy's AI assistant. Ask me anything about his portfolio.",
       },
     ]);
 
-  const [input, setInput] =
-    useState("");
 
-
-  /* NAVIGATION */
+  /* =====================================================
+     PORTFOLIO NAVIGATION
+  ===================================================== */
 
   const goTo = (id) => {
 
-    document
-      .getElementById(id)
-      ?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+    const section =
+      document.getElementById(id);
 
-    setOpen(false);
+    if (!section) {
+
+      console.warn(
+        `Portfolio section #${id} was not found.`
+      );
+
+      return;
+
+    }
+
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+
+    /*
+      Keep the assistant open so the visitor can
+      see the AI response while the page moves.
+    */
 
   };
 
 
-  /* ASK AI */
+  /* =====================================================
+     SEND MESSAGE TO BACKEND
+  ===================================================== */
 
-  const askAI = (customQuestion = null) => {
+  const askAI = async (
+    customQuestion = null
+  ) => {
 
     const question =
-      customQuestion || input.trim();
+      customQuestion ??
+      input.trim();
 
-    if (!question) return;
 
-    const result =
-      getAIResponse(question);
+    if (
+      !question ||
+      loading
+    ) {
 
+      return;
+
+    }
+
+
+    /* =================================================
+       ADD USER MESSAGE
+    ================================================= */
 
     setMessages((prev) => [
+
       ...prev,
 
       {
@@ -733,42 +518,225 @@ function FloatingAssistant() {
         text: question,
       },
 
-      {
-        sender: "ai",
-        text: result.text,
-        action: result.action,
-        external: result.external,
-      },
-
     ]);
+
 
     setInput("");
 
-  };
+    setLoading(true);
 
 
-  /* ENTER KEY */
+    try {
 
-  const handleKeyDown = (event) => {
 
-    if (event.key === "Enter") {
-      askAI();
+      /* ===============================================
+         CONVERSATION HISTORY
+      =============================================== */
+
+      const conversation =
+        messages
+
+          .filter(
+            (message) =>
+              message.sender === "user" ||
+              message.sender === "ai"
+          )
+
+          .slice(-10)
+
+          .map((message) => ({
+
+            role:
+              message.sender === "user"
+                ? "user"
+                : "assistant",
+
+            content:
+              message.text,
+
+          }));
+
+
+      /* ===============================================
+         CALL OLLAMA BACKEND
+      =============================================== */
+
+      const response =
+        await fetch(
+          "http://localhost:5000/api/chat",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+
+            body:
+              JSON.stringify({
+                message: question,
+                conversation,
+              }),
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      /* ===============================================
+         CHECK SERVER RESPONSE
+      =============================================== */
+
+      if (!response.ok) {
+
+        throw new Error(
+          data.error ||
+          "AI server returned an error."
+        );
+
+      }
+
+
+      /* ===============================================
+         ADD AI RESPONSE
+      =============================================== */
+
+      setMessages((prev) => [
+
+        ...prev,
+
+        {
+          sender: "ai",
+
+          text:
+            data.answer ||
+            "I couldn't generate a response.",
+        },
+
+      ]);
+
+
+      /* ===============================================
+         AI CONTROLLED NAVIGATION
+      =============================================== */
+
+      if (data.navigateTo) {
+
+        const allowedSections = [
+          "home",
+          "about",
+          "skills",
+          "projects",
+          "research",
+          "certifications",
+          "contact",
+        ];
+
+
+        /*
+          Security/safety check:
+          only allow known portfolio sections.
+        */
+
+        if (
+          allowedSections.includes(
+            data.navigateTo
+          )
+        ) {
+
+          setTimeout(() => {
+
+            goTo(
+              data.navigateTo
+            );
+
+          }, 600);
+
+        }
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "AI Assistant Error:",
+        error
+      );
+
+
+      setMessages((prev) => [
+
+        ...prev,
+
+        {
+          sender: "ai",
+
+          text:
+            "⚠️ I couldn't connect to the AI server. Please make sure the backend is running with `npm run server`.",
+        },
+
+      ]);
+
+    }
+
+    finally {
+
+      setLoading(false);
+
     }
 
   };
 
 
+  /* =====================================================
+     ENTER KEY
+  ===================================================== */
+
+  const handleKeyDown = (
+    event
+  ) => {
+
+    if (
+      event.key === "Enter" &&
+      !event.shiftKey
+    ) {
+
+      event.preventDefault();
+
+      askAI();
+
+    }
+
+  };
+
+
+  /* =====================================================
+     QUICK QUESTIONS
+  ===================================================== */
+
   const quickQuestions = [
+
     "Who is Reddy?",
+
     "What are his skills?",
+
     "What projects has he built?",
+
     "What is his CGPA?",
+
     "What certificates does he have?",
+
   ];
 
 
   return (
+
     <>
+
 
       {/* =================================================
           CHAT WINDOW
@@ -779,24 +747,29 @@ function FloatingAssistant() {
         {open && (
 
           <motion.div
+
             initial={{
               opacity: 0,
               y: 25,
               scale: 0.92,
             }}
+
             animate={{
               opacity: 1,
               y: 0,
               scale: 1,
             }}
+
             exit={{
               opacity: 0,
               y: 25,
               scale: 0.92,
             }}
+
             transition={{
               duration: 0.25,
             }}
+
             className="
               fixed
               right-5
@@ -814,7 +787,10 @@ function FloatingAssistant() {
             "
           >
 
-            {/* HEADER */}
+
+            {/* =================================================
+                HEADER
+            ================================================= */}
 
             <div
               className="
@@ -826,7 +802,16 @@ function FloatingAssistant() {
               "
             >
 
-              <div className="flex items-center gap-3">
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-3
+                "
+              >
+
+
+                {/* MINI ROBOT */}
 
                 <div
                   className="
@@ -841,11 +826,21 @@ function FloatingAssistant() {
                 >
 
                   <Canvas
+
                     camera={{
-                      position: [0, 0, 4],
+                      position: [
+                        0,
+                        0,
+                        4,
+                      ],
+
                       fov: 40,
                     }}
-                    dpr={[1, 1.5]}
+
+                    dpr={[
+                      1,
+                      1.5,
+                    ]}
                   >
 
                     <ambientLight
@@ -853,7 +848,11 @@ function FloatingAssistant() {
                     />
 
                     <pointLight
-                      position={[2, 2, 4]}
+                      position={[
+                        2,
+                        2,
+                        4,
+                      ]}
                       intensity={8}
                       color="#22d3ee"
                     />
@@ -865,6 +864,8 @@ function FloatingAssistant() {
                 </div>
 
 
+                {/* TITLE */}
+
                 <div>
 
                   <h3
@@ -875,6 +876,7 @@ function FloatingAssistant() {
                   >
                     Reddy's AI Assistant
                   </h3>
+
 
                   <div
                     className="
@@ -895,13 +897,18 @@ function FloatingAssistant() {
                       "
                     />
 
+
                     <span
                       className="
                         text-xs
                         text-cyan-400
                       "
                     >
-                      Resume Knowledge Active
+
+                      {loading
+                        ? "Thinking..."
+                        : "AI Online"}
+
                     </span>
 
                   </div>
@@ -913,7 +920,9 @@ function FloatingAssistant() {
             </div>
 
 
-            {/* MESSAGES */}
+            {/* =================================================
+                MESSAGES
+            ================================================= */}
 
             <div
               className="
@@ -926,14 +935,18 @@ function FloatingAssistant() {
             >
 
               {messages.map(
-                (message, index) => (
+                (
+                  message,
+                  index
+                ) => (
 
                   <div
                     key={index}
                     className={`
                       flex
                       ${
-                        message.sender === "user"
+                        message.sender ===
+                        "user"
                           ? "justify-end"
                           : "justify-start"
                       }
@@ -950,62 +963,17 @@ function FloatingAssistant() {
                         leading-5
 
                         ${
-                          message.sender === "user"
+                          message.sender ===
+                          "user"
+
                             ? "bg-cyan-500 text-slate-950"
+
                             : "bg-slate-900 border border-slate-800 text-gray-300"
                         }
                       `}
                     >
 
                       {message.text}
-
-
-                      {/* SECTION LINK */}
-
-                      {message.action && (
-
-                        <button
-                          onClick={() =>
-                            goTo(message.action)
-                          }
-                          className="
-                            block
-                            mt-2
-                            text-xs
-                            text-cyan-400
-                            hover:text-cyan-300
-                            underline
-                          "
-                        >
-                          Explore this section →
-                        </button>
-
-                      )}
-
-
-                      {/* EXTERNAL LINK */}
-
-                      {message.external && (
-
-                        <a
-                          href={
-                            message.external
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                          className="
-                            block
-                            mt-2
-                            text-xs
-                            text-cyan-400
-                            hover:text-cyan-300
-                            underline
-                          "
-                        >
-                          Open profile →
-                        </a>
-
-                      )}
 
                     </div>
 
@@ -1014,10 +982,53 @@ function FloatingAssistant() {
                 )
               )}
 
+
+              {/* =================================================
+                  THINKING
+              ================================================= */}
+
+              {loading && (
+
+                <div
+                  className="
+                    flex
+                    justify-start
+                  "
+                >
+
+                  <div
+                    className="
+                      px-4
+                      py-3
+                      rounded-xl
+                      bg-slate-900
+                      border
+                      border-slate-800
+                      text-cyan-400
+                      text-sm
+                    "
+                  >
+
+                    <span
+                      className="
+                        animate-pulse
+                      "
+                    >
+                      AI is thinking...
+                    </span>
+
+                  </div>
+
+                </div>
+
+              )}
+
             </div>
 
 
-            {/* QUICK QUESTIONS */}
+            {/* =================================================
+                QUICK QUESTIONS
+            ================================================= */}
 
             <div
               className="
@@ -1034,9 +1045,13 @@ function FloatingAssistant() {
 
                   <button
                     key={question}
+
+                    disabled={loading}
+
                     onClick={() =>
                       askAI(question)
                     }
+
                     className="
                       px-3
                       py-1.5
@@ -1049,9 +1064,12 @@ function FloatingAssistant() {
                       hover:border-cyan-400/40
                       text-xs
                       transition
+                      disabled:opacity-40
                     "
                   >
+
                     {question}
+
                   </button>
 
                 )
@@ -1060,7 +1078,9 @@ function FloatingAssistant() {
             </div>
 
 
-            {/* INPUT */}
+            {/* =================================================
+                INPUT
+            ================================================= */}
 
             <div
               className="
@@ -1078,14 +1098,27 @@ function FloatingAssistant() {
               >
 
                 <input
+
                   value={input}
-                  onChange={(e) =>
-                    setInput(e.target.value)
+
+                  onChange={(event) =>
+                    setInput(
+                      event.target.value
+                    )
                   }
+
                   onKeyDown={
                     handleKeyDown
                   }
-                  placeholder="Ask about Reddy..."
+
+                  disabled={loading}
+
+                  placeholder={
+                    loading
+                      ? "AI is thinking..."
+                      : "Ask about Reddy..."
+                  }
+
                   className="
                     flex-1
                     min-w-0
@@ -1100,13 +1133,23 @@ function FloatingAssistant() {
                     outline-none
                     focus:border-cyan-400
                     placeholder:text-gray-600
+                    disabled:opacity-50
                   "
+
                 />
 
+
                 <button
+
                   onClick={() =>
                     askAI()
                   }
+
+                  disabled={
+                    loading ||
+                    !input.trim()
+                  }
+
                   className="
                     px-4
                     rounded-xl
@@ -1115,9 +1158,13 @@ function FloatingAssistant() {
                     text-slate-950
                     font-semibold
                     transition
+                    disabled:opacity-40
+                    disabled:cursor-not-allowed
                   "
                 >
+
                   →
+
                 </button>
 
               </div>
@@ -1132,19 +1179,23 @@ function FloatingAssistant() {
 
 
       {/* =================================================
-          FLOATING 3D ROBOT
+          FLOATING ROBOT BUTTON
       ================================================= */}
 
       <motion.button
+
         onClick={() =>
           setOpen(!open)
         }
+
         whileHover={{
           scale: 1.08,
         }}
+
         whileTap={{
           scale: 0.92,
         }}
+
         className="
           fixed
           right-5
@@ -1161,15 +1212,26 @@ function FloatingAssistant() {
           transition-shadow
           overflow-hidden
         "
+
         aria-label="Open AI Assistant"
       >
 
         <Canvas
+
           camera={{
-            position: [0, 0, 4],
+            position: [
+              0,
+              0,
+              4,
+            ],
+
             fov: 40,
           }}
-          dpr={[1, 1.5]}
+
+          dpr={[
+            1,
+            1.5,
+          ]}
         >
 
           <ambientLight
@@ -1177,12 +1239,20 @@ function FloatingAssistant() {
           />
 
           <directionalLight
-            position={[2, 3, 4]}
+            position={[
+              2,
+              3,
+              4,
+            ]}
             intensity={3}
           />
 
           <pointLight
-            position={[1, 1, 3]}
+            position={[
+              1,
+              1,
+              3,
+            ]}
             intensity={10}
             color="#22d3ee"
           />
@@ -1192,7 +1262,9 @@ function FloatingAssistant() {
         </Canvas>
 
 
-        {/* ONLINE INDICATOR */}
+        {/* =================================================
+            ONLINE DOT
+        ================================================= */}
 
         <span
           className="
@@ -1212,7 +1284,10 @@ function FloatingAssistant() {
       </motion.button>
 
     </>
+
   );
+
 }
+
 
 export default FloatingAssistant;

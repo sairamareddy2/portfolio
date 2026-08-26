@@ -1,6 +1,6 @@
 import attendance from "../assets/images/attendance.png";
 import manuscript from "../assets/research/manuscript.pdf";
-
+<section id="projects"></section>
 const projects = [
   {
     id: 1,
