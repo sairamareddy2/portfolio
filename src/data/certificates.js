@@ -2,9 +2,7 @@ import agentic from "../assets/certificates/agentic-ai.pdf";
 import deloitte from "../assets/certificates/deloitte.pdf";
 import iot from "../assets/certificates/iot.pdf";
 import datacom from "../assets/certificates/Datacom.pdf";
-<section id="certifications">
-  
-</section>
+
 const certificates = [
   {
     id: 1,

@@ -1,6 +1,6 @@
 import attendance from "../assets/images/attendance.png";
 import manuscript from "../assets/research/manuscript.pdf";
-<section id="projects"></section>
+
 const projects = [
   {
     id: 1,
@@ -27,7 +27,6 @@ const projects = [
 
   {
     id: 2,
-
     title: "Clinic Management System",
 
     image: null,
@@ -48,7 +47,6 @@ const projects = [
 
   {
     id: 3,
-
     title: "AI Subtitle Generator",
 
     image: null,
