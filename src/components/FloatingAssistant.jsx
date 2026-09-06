@@ -2,7 +2,9 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-
+const API_URL = import.meta.env.DEV
+  ? "http://localhost:5000/api/chat"
+  : "/api/chat";
 /* =====================================================
    MINI 3D ROBOT
 ===================================================== */
@@ -558,32 +560,24 @@ function FloatingAssistant() {
 
 
       /* ===============================================
-         CALL OLLAMA BACKEND
-      =============================================== */
+        /* ===============================================
+   CALL AI BACKEND
+=============================================== */
 
-      const response =
-        await fetch(
-          "http://localhost:5000/api/chat",
-          {
-            method: "POST",
+const response = await fetch(API_URL, {
+  method: "POST",
 
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
+  headers: {
+    "Content-Type": "application/json",
+  },
 
-            body:
-              JSON.stringify({
-                message: question,
-                conversation,
-              }),
-          }
-        );
+  body: JSON.stringify({
+    message: question,
+    conversation,
+  }),
+});
 
-
-      const data =
-        await response.json();
-
+const data = await response.json();
 
       /* ===============================================
          CHECK SERVER RESPONSE

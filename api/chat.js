@@ -1,22 +1,6 @@
-import express from "express";
-import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
-import "dotenv/config";
 
-const app = express();
-
-const PORT = 5000;
 const MODEL = "gemini-3.6-flash";
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
-
-app.use(cors());
-app.use(express.json());
-
-/* =====================================================
-   PORTFOLIO KNOWLEDGE BASE
-===================================================== */
 
 const portfolioContext = `
 You are Reddy's personal AI portfolio assistant.
@@ -74,14 +58,12 @@ Period:
 CGPA:
 9.2
 
-
 PROGRAMMING LANGUAGES
 ---------------------
 - Java
 - Python
 - C
 - R
-
 
 WEB / SOFTWARE TECHNOLOGIES
 ---------------------------
@@ -92,13 +74,11 @@ WEB / SOFTWARE TECHNOLOGIES
 - Express.js
 - Streamlit
 
-
 DATABASES
 ---------
 - MySQL
 - MongoDB
 - SQLite
-
 
 TOOLS
 -----
@@ -109,10 +89,8 @@ TOOLS
 - StarUML
 - Google Colab
 
-
 PROJECTS
 ========
-
 
 PROJECT 1 — AI SUBTITLE GENERATOR
 ----------------------------------
@@ -138,7 +116,6 @@ FFmpeg and MoviePy are used for subtitle processing
 and embedding.
 
 Streamlit provides the interactive web interface.
-
 
 PROJECT 2 — CLINIC MANAGEMENT SYSTEM
 -------------------------------------
@@ -166,7 +143,6 @@ relationships and foreign keys.
 Stored procedures and triggers are used for automation
 and data consistency.
 
-
 PROJECT 3 — SMART ATTENDANCE GUARD
 ----------------------------------
 Type:
@@ -192,14 +168,12 @@ The system includes role-based authentication for:
 
 It also provides attendance monitoring and analysis.
 
-
 CERTIFICATIONS
 ==============
 - Industry Based Training Program on Agentic AI and LLMs
 - Deloitte Data Analytics Job Simulation
-- Full Stack Web Development Training
 - NPTEL Introduction to IoT — Elite Silver
-
+- Partnering with AI in the Workplace Job Simulation
 
 ACTIVITIES
 ==========
@@ -207,7 +181,6 @@ ACTIVITIES
   Student Chapter at VNRVJIET
 - Volunteer of National Service Scheme (NSS)
 - Volunteer of Data Quester Club at VNRVJIET
-
 
 RESEARCH / INTERESTS
 ====================
@@ -219,7 +192,6 @@ Reddy's technical interests include:
 - Agentic AI
 - Full Stack Development
 - Research-oriented software projects
-
 
 PORTFOLIO NAVIGATION
 ====================
@@ -238,7 +210,6 @@ contains the requested information.
 Do not pretend that you have physically scrolled the page.
 The frontend can handle navigation separately.
 
-
 ONLINE PROFILES
 ===============
 GitHub:
@@ -248,32 +219,22 @@ LinkedIn:
 https://linkedin.com/in/sairamareddy
 `;
 
-
-/* =====================================================
-   HEALTH CHECK
-===================================================== */
-
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "AI server running",
-    ai: "Google Gemini",
-    model: MODEL,
-  });
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
-/* =====================================================
-   CHAT
-===================================================== */
-/* =====================================================
-   CHAT
-===================================================== */
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      error: "Method not allowed.",
+    });
+  }
 
-app.post("/api/chat", async (req, res) => {
   try {
     const {
       message,
       conversation = [],
-    } = req.body;
+    } = req.body || {};
 
     if (!message || !message.trim()) {
       return res.status(400).json({
@@ -281,36 +242,21 @@ app.post("/api/chat", async (req, res) => {
       });
     }
 
-    /*
-      Keep the conversation small so the request remains
-      fast and uses fewer tokens.
-    */
-
     const recentConversation = conversation
       .slice(-6)
-      .map((item) => {
-        const role =
+      .map((item) => ({
+        role:
           item.role === "assistant"
             ? "model"
-            : "user";
-
-        return {
-          role,
-          parts: [
-            {
-              text: item.content,
-            },
-          ],
-        };
-      });
+            : "user",
+        parts: [
+          {
+            text: item.content,
+          },
+        ],
+      }));
 
     const userMessage = message.trim();
-
-    console.log(`AI QUESTION: ${userMessage}`);
-
-    /* =================================================
-       GEMINI
-    ================================================= */
 
     const response = await ai.models.generateContent({
       model: MODEL,
@@ -330,35 +276,22 @@ app.post("/api/chat", async (req, res) => {
 
       config: {
         systemInstruction: portfolioContext,
-
         temperature: 0.2,
-
         maxOutputTokens: 350,
       },
     });
 
-    const answer =
-      response?.text?.trim();
+    const answer = response?.text?.trim();
 
     if (!answer) {
-      throw new Error(
-        "Gemini returned an empty response."
-      );
+      throw new Error("Gemini returned an empty response.");
     }
-
-    console.log(
-      "AI RESPONSE:",
-      answer.substring(0, 150) +
-        (answer.length > 150 ? "..." : "")
-    );
-
 
     /* =================================================
        PORTFOLIO NAVIGATION
     ================================================= */
 
-    const lowerMessage =
-      userMessage.toLowerCase();
+    const lowerMessage = userMessage.toLowerCase();
 
     let navigateTo = null;
 
@@ -410,43 +343,18 @@ app.post("/api/chat", async (req, res) => {
       navigateTo = "about";
     }
 
-
-    /* =================================================
-       SEND RESPONSE
-    ================================================= */
-
-    res.json({
+    return res.status(200).json({
       answer,
       model: MODEL,
       navigateTo,
     });
 
   } catch (error) {
+    console.error("GEMINI VERCEL ERROR:", error);
 
-    console.error(
-      "GEMINI ERROR:",
-      error
-    );
-
-    res.status(500).json({
-      error:
-        "AI assistant failed to respond.",
-
-      details:
-        error.message,
+    return res.status(500).json({
+      error: "AI assistant failed to respond.",
+      details: error.message,
     });
   }
-});
-/* =====================================================
-   SERVER
-===================================================== */
-
-app.listen(PORT, () => {
-  console.log(
-    `AI server running on http://localhost:${PORT}`
-  );
-
-  console.log(
-    `Using Gemini model: ${MODEL}`
-  );
-});
+}
